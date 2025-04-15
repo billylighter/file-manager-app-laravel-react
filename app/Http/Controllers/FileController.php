@@ -10,7 +10,6 @@ class FileController extends Controller
 {
     public function index()
     {
-//        dd(File::latest()->paginate(10));
         return inertia('Files/Index', [
             'files' => File::latest()->paginate(10),
         ]);
@@ -19,7 +18,7 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|max:10240', // 10MB limit
+            'file' => 'required|file|max:10240',
         ]);
 
         $uploadedFile = $request->file('file');
