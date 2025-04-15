@@ -10,6 +10,7 @@ class FileController extends Controller
 {
     public function index()
     {
+//        dd(File::latest()->paginate(10));
         return inertia('Files/Index', [
             'files' => File::latest()->paginate(10),
         ]);
@@ -29,6 +30,7 @@ class FileController extends Controller
             'path' => $path,
             'mime_type' => $uploadedFile->getClientMimeType(),
             'size' => $uploadedFile->getSize(),
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->back()->with('success', 'File uploaded.');
